@@ -1,0 +1,29 @@
+<h1>Films dans 'Movie'</h1>
+
+<% @movies.each do |movie| %>
+<p>
+    <a href="/movies/<%= movie.id %>">
+    <%if movie.category%>
+        <%= movie.title%> (<%= movie.category.name%>)
+    <%else%>
+        <%= movie.title%>
+    <%end%>
+    </a>
+</p>
+<% end %>
+
+<h2>Ajouter un film</h2>
+<%= form_tag "/movies", method: "post" do %>
+  <input type="text" name="title" />
+  <select name="category_id" />
+    <% @categories.each do |category|%>
+        <option value="<%= category.id %>"><%= category.name %></option>
+    <%end%>
+  <input type="submit" value="Ajouter un film" />
+<% end %>
+
+<h3>Chercher par genre</h3>
+<%= form_tag "/movies", method: "get" do %>
+  Store <%= text_field_tag :store, params[:store] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>

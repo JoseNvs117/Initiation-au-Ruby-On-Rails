@@ -1,0 +1,22 @@
+<h1>AFFICHAGE FILM</h1>
+<p><%= @movie.title %></p>
+
+<%= form_tag "/authors/#{@author.id}", method: "patch" do %>
+    <input type="text" name="name" value="<%= @author.name %>" />
+    <p><%= @author.errors[:name].first %></p>
+    <input type="submit" value="Modifier nom"/>
+<% end %>
+
+<%= form_tag "/authors/#{@author.id}", method: "delete" do %>
+    <input type="submit" value="Supprimer le author">
+<% end %>
+
+
+<h2>Ajouter un authors</h2>
+<%= form_tag "/authors", method: "post" do %>
+  <input type="text" name="name" />
+  <input type="date" name="birth_date" />
+  <input type="text" name="city" />
+  <input type="integer" name="book_number" />
+  <input type="submit" value="Ajouter un film" />
+<% end %>
